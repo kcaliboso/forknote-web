@@ -1,15 +1,16 @@
 import { createBrowserRouter, redirect } from "react-router";
-import Guest from "./layouts/guest.tsx";
-import Login from "./pages/auth/login.tsx";
-import Register from "./pages/auth/register.tsx";
-import App from "./App";
-import ErrorPage from "./pages/error-page.tsx";
-import { RequireAuth } from "./components/require-auth.tsx";
-import UserRecipeList from "./pages/my/recipe/list.tsx";
-import Auth from "./layouts/auth.tsx";
-import AboutPage from "./pages/about.tsx";
-import ContactPage from "./pages/contact-us.tsx";
-import DefaultLayout from "./layouts/default.tsx";
+import Guest from "@/layouts/guest.tsx";
+import Login from "@/pages/auth/login.tsx";
+import Register from "@/pages/auth/register.tsx";
+import ErrorPage from "@/pages/error-page.tsx";
+import { RequireAuth } from "@/components/require-auth.tsx";
+import UserRecipeList from "@/pages/my/recipe/list.tsx";
+import Auth from "@/layouts/auth.tsx";
+import AboutPage from "@/pages/about.tsx";
+import ContactPage from "@/pages/contact-us.tsx";
+import DefaultLayout from "@/layouts/default.tsx";
+import RecipesPage from "@/pages/recipes.tsx";
+import HomePage from "@/pages/home";
 
 export const router = createBrowserRouter([
   {
@@ -58,7 +59,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/",
-        element: <App />,
+        element: <HomePage />,
       },
       {
         path: "/about",
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactPage />,
+      },
+      {
+        path: "/recipes",
+        element: <RecipesPage />,
       },
     ],
   },

@@ -1,43 +1,56 @@
-import { useNavigate } from "react-router";
-import { useState, useEffect } from "react";
-import MobileNavBar from "./mobile-navbar.tsx";
-import NavBar from "./navbar.tsx";
-import useIsMobile from "../hooks/isMobile.tsx";
-import HamburgerIcon from "./icons/hamburger-icon.tsx";
+import Navbar from "@/components/navbar";
+import { Link } from "react-router";
+import { Input } from "@/components/ui/input";
+import { useAuthStore } from "@/stores/auth";
+import { SearchIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+import { motion } from "motion/react";
 
 const Header = () => {
-  const navigate = useNavigate();
-  const isMobile = useIsMobile();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const goHome = () => {
-    navigate("/");
-  };
-
-  useEffect(() => {
-    if (!isMobile && isOpen) {
-      setIsOpen(false);
-    }
-  }, [isMobile, isOpen]);
+  const user = useAuthStore((state) => state.user);
 
   return (
-    <div className="flex w-full sticky top-0 py-4 lg:py-6">
-      <nav className="flex rounded-xl justify-self-center justify-between items-center w-full bg-matcha-800 text-primary-100  px-2 py-2 lg:py-4 lg:px-5">
-        <h1 className="font-extrabold text-3xl cursor-pointer" onClick={goHome}>
-          {isMobile ? "RMS" : "Recipe Manager"}
-        </h1>
-
-        {!isMobile && <NavBar />}
-        {isMobile && (
-          <HamburgerIcon
-            className="size-8"
-            onClick={() => setIsOpen(!isOpen)}
-          />
-        )}
-
-        <MobileNavBar isOpen={isOpen} closeFn={setIsOpen} />
-      </nav>
-    </div>
+    <motion.div
+      initial={{ y: -50 }}
+      animate={{
+        y: 0,
+        transition: {
+          duration: 0.25,
+        },
+      }}
+    >
+      <div className="w-full py-2 flex items-center justify-between px-2">
+        <Link to="/" className="font-bold text-4xl">
+          Fork<span className="text-primary">Note</span>
+        </Link>
+        <Navbar />
+        <div className="flex gap-4 items-center">
+          <div className="relative">
+            <div className="absolute right-2.5 top-2.5 h-4 w-4 text-muted-foreground">
+              <SearchIcon className="h-4 w-4" />
+            </div>
+            <Input
+              id="search"
+              type="search"
+              placeholder="Search..."
+              className="w-full rounded-lg bg-background pr-8"
+            />
+          </div>
+          {/* TODO: User avatar here */}
+          {user ? (
+            "User Avatar"
+          ) : (
+            <>
+              <Link to="/auth">
+                <Button className="cursor-pointer">Login</Button>
+              </Link>
+            </>
+          )}
+        </div>
+      </div>
+    </motion.div>
   );
 };
+
 export default Header;

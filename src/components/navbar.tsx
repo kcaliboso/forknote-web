@@ -1,26 +1,33 @@
-import { NavLink } from "react-router";
+import { Link } from "react-router-dom";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
 
-const NavBar = () => {
+const Navbar = () => {
   return (
-    <div className="flex gap-8 items-center justify-around h-full ">
-      <NavLink
-        to="/about"
-        className={({ isActive }) =>
-          [isActive ? "active-nav-link" : "inactive-nav-link"].join(" ")
-        }
-      >
-        About
-      </NavLink>
-      <NavLink
-        to="/contact-us"
-        className={({ isActive }) =>
-          [isActive ? "active-nav-link" : "inactive-nav-link"].join(" ")
-        }
-      >
-        Contact Us
-      </NavLink>
-    </div>
+    <NavigationMenu>
+      <NavigationMenuList className="gap-x-8">
+        <NavigationMenuItem>
+          <NavigationMenuLink className="font-medium" asChild>
+            <Link to="/recipes">Recipes</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink className="font-medium" asChild>
+            <Link to="/about">About</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink className="font-medium" asChild>
+            <Link to="/contact-us">Contact Us</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 };
 
-export default NavBar;
+export default Navbar;
