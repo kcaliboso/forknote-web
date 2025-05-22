@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useAuthStore } from "../../stores/auth";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const login = useAuthStore((state) => state.saveAuth);
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setCredentials((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     const fakeUser = {
       name: "Kevin Caliboso",
