@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { useAuthStore } from "../stores/auth";
 import { clearAuthStore } from "../stores/auth";
 
-const Auth = () => {
+export default function Auth() {
   const user = useAuthStore((state) => state.user);
 
   const handleLogout = () => {
@@ -15,6 +15,4 @@ const Auth = () => {
       <Outlet />
     </>
   );
-};
-
-export default Auth;
+}

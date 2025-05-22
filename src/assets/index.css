@@ -124,3 +124,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.hero-text {
+  @apply py-2 overflow-hidden;
+}

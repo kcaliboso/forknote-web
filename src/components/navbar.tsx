@@ -6,7 +6,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 
-const Navbar = () => {
+export default function Navbar() {
   return (
     <NavigationMenu>
       <NavigationMenuList className="gap-x-8">
@@ -28,6 +28,4 @@ const Navbar = () => {
       </NavigationMenuList>
     </NavigationMenu>
   );
-};
-
-export default Navbar;
+}

@@ -3,7 +3,7 @@ import Guest from "@/layouts/guest.tsx";
 import Login from "@/pages/auth/login.tsx";
 import Register from "@/pages/auth/register.tsx";
 import ErrorPage from "@/pages/error-page.tsx";
-import { RequireAuth } from "@/components/require-auth.tsx";
+import RequireAuth from "@/components/require-auth.tsx";
 import UserRecipeList from "@/pages/my/recipe/list.tsx";
 import Auth from "@/layouts/auth.tsx";
 import AboutPage from "@/pages/about.tsx";

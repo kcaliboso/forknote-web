@@ -1,7 +1,7 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuthStore } from "../stores/auth.ts";
 
-export const RequireAuth = () => {
+export default function RequireAuth() {
   const user = useAuthStore((state) => state.user);
   const redirect = useAuthStore((state) => state.redirect);
   const location = useLocation();
@@ -15,4 +15,4 @@ export const RequireAuth = () => {
   }
 
   return <Outlet />;
-};
+}

@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { Navigate, useSearchParams } from "react-router";
 import { useAuthStore } from "../stores/auth";
 
-const Guest = () => {
+export default function Guest() {
   const [searchParams] = useSearchParams();
   const user = useAuthStore((state) => state.user);
   const redirect = searchParams.get("redirect") || "/my/recipe/list";
@@ -16,6 +16,4 @@ const Guest = () => {
       <Outlet />
     </>
   );
-};
-
-export default Guest;
+}
