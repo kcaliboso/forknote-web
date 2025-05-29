@@ -15,10 +15,10 @@ import HomePage from "@/pages/home";
 export const router = createBrowserRouter([
   {
     element: <DefaultLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         element: <Guest />,
-        errorElement: <ErrorPage />,
         children: [
           {
             path: "/auth",
@@ -39,6 +39,7 @@ export const router = createBrowserRouter([
       {
         element: <RequireAuth />,
         path: "my",
+        errorElement: <ErrorPage />,
         children: [
           {
             element: <Auth />,
