@@ -27,7 +27,7 @@ export default function DefaultLayout() {
         yPercent: 60,
         duration: 0.3,
         autoAlpha: 0,
-        stagger: 0.15,
+        stagger: 0.1,
         ease: "circ.inOut",
       },
       "<+0.25"
