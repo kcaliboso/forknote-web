@@ -12,6 +12,17 @@ export function ThemeProvider({
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
   );
 
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+  systemTheme.addEventListener("change", () => {
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? "dark"
+      : "light";
+
+    setTheme(systemTheme);
+  });
+
   useEffect(() => {
     const root = window.document.documentElement;
 
