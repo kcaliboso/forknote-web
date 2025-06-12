@@ -4,6 +4,7 @@ import { useAuthStore } from "@/stores/auth";
 import { Button } from "@/components/ui/button";
 
 import Search from "./search";
+import { ModeToggle } from "./mode-toggle";
 
 export default function Header() {
   const user = useAuthStore((state) => state.user);
@@ -19,6 +20,7 @@ export default function Header() {
       <Navbar />
       <div className="flex gap-4 items-center">
         <Search />
+        <ModeToggle />
         {/* TODO: User avatar here */}
         {user ? (
           "User Avatar"
