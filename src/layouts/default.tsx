@@ -3,6 +3,7 @@ import PageSection from "../components/sections/page-section";
 import Header from "@/components/header";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import Footer from "@/components/footer";
 
 export default function DefaultLayout() {
   gsap.registerPlugin(useGSAP);
@@ -12,7 +13,7 @@ export default function DefaultLayout() {
     timeline.fromTo(
       "#header",
       {
-        y: -75,
+        y: -100,
       },
       {
         duration: 0.75,
@@ -37,10 +38,11 @@ export default function DefaultLayout() {
       ".hero-button",
       {
         y: 25,
+        opacity: 0,
       },
       {
         y: 0,
-        opacity: 1,
+        autoAlpha: 1,
         duration: 0.15,
         ease: "circ.inOut",
       },
@@ -49,9 +51,10 @@ export default function DefaultLayout() {
   });
   return (
     <>
-      <PageSection className="w-full h-full min-h-screen">
+      <PageSection>
         <Header />
         <Outlet />
+        <Footer />
       </PageSection>
     </>
   );
