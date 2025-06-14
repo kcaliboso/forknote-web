@@ -14,9 +14,11 @@ export default function Hero() {
           <p className="hero-text">Shared with the World.</p>
         </div>
       </div>
-      <Button className="cursor-pointer font-bold text-xl px-6 py-6 hero-button">
-        <Link to="/auth/login">Join as a Creator</Link>
-      </Button>
+      <div className="hero-button">
+        <Button className="cursor-pointer font-bold text-xl px-6 py-6">
+          <Link to="/auth/login">Join as a Creator</Link>
+        </Button>
+      </div>
     </div>
   );
 }
