@@ -6,9 +6,9 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 
-export default function Navbar() {
+export default function Navbar({ ...props }) {
   return (
-    <NavigationMenu>
+    <NavigationMenu {...props}>
       <NavigationMenuList className="gap-x-8">
         <NavigationMenuItem>
           <NavigationMenuLink className="font-medium" asChild>
