@@ -1,5 +1,7 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useAuthStore } from "../../stores/auth";
+import { Separator } from "@/components/ui/separator";
+import LoginForm from "@/components/login-form";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -21,33 +23,17 @@ const Login = () => {
   };
 
   return (
-    <>
-      <div>Login form</div>
-      <h1>hey there</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col">
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={credentials.email}
-          onChange={handleChange}
-          className="border"
-        />
-
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={credentials.password}
-          onChange={handleChange}
-          className="border"
-        />
-
-        <button type="submit">Login</button>
-      </form>
-    </>
+    <div className="flex flex-1 lg:p-6">
+      <div className="flex-1 flex h-full border border-secondary rounded-4xl shadow-lg/5">
+        <div className="flex-1 hidden justify-center items-center lg:flex">
+          image here
+        </div>
+        <Separator orientation="vertical" className="bg-secondary" />
+        <div className="w-full lg:w-1/3 h-full flex justify-center items-center">
+          <LoginForm />
+        </div>
+      </div>
+    </div>
   );
 };
 
