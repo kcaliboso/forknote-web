@@ -2,9 +2,11 @@ import Navbar from "@/components/navbar";
 import { Link } from "react-router";
 import { useAuthStore } from "@/stores/auth";
 import { Button } from "@/components/ui/button";
+import { useIndexCheck } from "@/hooks/useIndexCheck";
 
 import Search from "./search";
 import { ModeToggle } from "./mode-toggle";
+import UserAvatar from "./user-avatar";
 
 export default function Header() {
   const user = useAuthStore((state) => state.user);
@@ -12,19 +14,19 @@ export default function Header() {
   return (
     <div
       id="header"
-      className="w-full py-2 flex items-center justify-between px-2 h-16"
+      className="w-full h-12 px-4 flex items-center justify-between"
     >
       <Link to="/" className="font-bold text-4xl">
         Fork<span className="text-primary">Note</span>
       </Link>
       <div className="hidden xl:flex w-full justify-end gap-12">
-        <Navbar />
+        <Navbar className={useIndexCheck() ? "visible" : "hidden"} />
         <div className="flex gap-4 items-center">
-          <Search />
+          <Search show={useIndexCheck() ? true : false} />
           <ModeToggle />
           {/* TODO: User avatar here */}
           {user ? (
-            "User Avatar"
+            <UserAvatar />
           ) : (
             <>
               <Link to="/auth">
