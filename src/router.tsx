@@ -1,16 +1,15 @@
 import { createBrowserRouter, redirect } from "react-router";
-import Guest from "@/layouts/guest.tsx";
 import Login from "@/pages/auth/login.tsx";
 import Register from "@/pages/auth/register.tsx";
 import ErrorPage from "@/pages/error-page.tsx";
 import RequireAuth from "@/components/require-auth.tsx";
 import UserRecipeList from "@/pages/my/recipe/list.tsx";
-import Auth from "@/layouts/auth.tsx";
 import AboutPage from "@/pages/about.tsx";
 import ContactPage from "@/pages/contact-us.tsx";
 import DefaultLayout from "@/layouts/default.tsx";
 import RecipesPage from "@/pages/recipes.tsx";
 import HomePage from "@/pages/home";
+import RecipeDetailsPage from "./pages/my/recipe/details";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +17,6 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        element: <Guest />,
         children: [
           {
             path: "/auth",
@@ -42,7 +40,6 @@ export const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
           {
-            element: <Auth />,
             errorElement: <ErrorPage />,
             children: [
               {
@@ -51,6 +48,10 @@ export const router = createBrowserRouter([
                   {
                     path: "list",
                     element: <UserRecipeList />,
+                  },
+                  {
+                    path: ":id",
+                    element: <RecipeDetailsPage />,
                   },
                 ],
               },
