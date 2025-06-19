@@ -1,26 +1,18 @@
-import { useState, type ChangeEvent, type FormEvent } from "react";
-import { useAuthStore } from "../../stores/auth";
 import { Separator } from "@/components/ui/separator";
 import LoginForm from "@/components/login-form";
+import { useAuthStore } from "@/stores/auth";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 const Login = () => {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
-  const login = useAuthStore((state) => state.saveAuth);
+  const user = useAuthStore((state) => state.user);
+  const navigate = useNavigate();
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setCredentials((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    const fakeUser = {
-      name: "Kevin Caliboso",
-      email: "calibosokevin@gmail.com",
-      jwt: "1",
-    };
-    login(fakeUser);
-  };
+  useEffect(() => {
+    if (user) {
+      navigate("/my/recipe/list");
+    }
+  });
 
   return (
     <div className="flex flex-1 lg:p-6">
