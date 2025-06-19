@@ -10,8 +10,15 @@ import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import axios from "../lib/axios";
+import { toast } from "sonner";
+import { useNavigate } from "react-router";
+import { useAuthStore } from "@/stores/auth";
 
 export default function LoginForm() {
+  const navigate = useNavigate();
+  const login = useAuthStore((state) => state.saveAuth);
+
   const formSchema = z.object({
     email: z.string().email({
       message: "Please enter your email.",
@@ -27,8 +34,18 @@ export default function LoginForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    await axios
+      .post("/v1/auth/login", {
+        ...values,
+      })
+      .then(({ data: response }) => {
+        login(response.data);
+        navigate("/my/recipe/list");
+      })
+      .catch((error) => {
+        toast(error.response.data.message);
+      });
   }
 
   return (
