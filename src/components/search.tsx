@@ -1,9 +1,16 @@
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import { SearchIcon } from "lucide-react";
+import type { ChangeEvent } from "react";
 
-export default function Search() {
+interface SearchProps {
+  show: boolean;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export default function Search({ show, onChange }: SearchProps) {
   return (
-    <div className="relative">
+    <div className={cn("relative", show ? "visible" : "hidden")}>
       <div className="absolute right-2.5 top-2.5 h-4 w-4 text-muted-foreground">
         <SearchIcon className="h-4 w-4" />
       </div>
@@ -11,6 +18,7 @@ export default function Search() {
         type="text"
         placeholder="Search..."
         className="w-full rounded-lg bg-background pr-8"
+        onChange={onChange}
       />
     </div>
   );
