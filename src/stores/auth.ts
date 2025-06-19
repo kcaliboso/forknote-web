@@ -4,7 +4,6 @@ import type { User } from "@/types/models/User";
 
 interface AuthStore {
   user: User | null;
-  jwt: string | null;
   redirect: boolean;
   saveAuth: (user: User) => void;
   clear: () => void;
@@ -15,15 +14,12 @@ const useAuthStore = create<AuthStore>()(
   persist(
     (set) => ({
       user: null,
-      jwt: null,
       redirect: true,
       saveAuth: (user) => {
         set({ user: user });
-        set({ jwt: user.jwt });
       },
       clear: () => {
         set({ user: null });
-        set({ jwt: null });
       },
       setRedirect: () => {
         set({ redirect: false });
