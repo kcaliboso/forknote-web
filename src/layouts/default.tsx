@@ -1,9 +1,9 @@
 import { Outlet, useLocation } from "react-router";
-import PageSection from "../components/sections/page-section";
 import Header from "@/components/header";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Footer from "@/components/footer";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function DefaultLayout() {
   gsap.registerPlugin(useGSAP);
@@ -48,13 +48,13 @@ export default function DefaultLayout() {
       );
     }
   });
+
   return (
-    <>
-      <PageSection>
-        <Header />
-        <Outlet />
-        <Footer />
-      </PageSection>
-    </>
+    <div className="p-6 lg:p-12">
+      <Header />
+      <Outlet />
+      <Footer />
+      <Toaster />
+    </div>
   );
 }
