@@ -50,7 +50,7 @@ export default function DefaultLayout() {
   });
 
   return (
-    <div className="p-6 lg:p-12">
+    <div className="px-6 lg:px-6 h-full">
       <Header />
       <Outlet />
       <Footer />
