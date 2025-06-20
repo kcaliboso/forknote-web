@@ -2,7 +2,7 @@ import Navbar from "@/components/navbar";
 import { Link } from "react-router";
 import { useAuthStore } from "@/stores/auth";
 import { Button } from "@/components/ui/button";
-import { useIndexCheck } from "@/hooks/useIndexCheck";
+import { useHomeComponents } from "@/hooks/useHomeComponents";
 
 import Search from "./search";
 import { ModeToggle } from "./mode-toggle";
@@ -14,15 +14,15 @@ export default function Header() {
   return (
     <div
       id="header"
-      className="w-full h-12 px-4 flex items-center justify-between"
+      className=" w-full h-12 py-8 flex items-center justify-between"
     >
       <Link to="/" className="font-bold text-4xl">
         Fork<span className="text-primary">Note</span>
       </Link>
       <div className="hidden xl:flex w-full justify-end gap-12">
-        <Navbar className={useIndexCheck() ? "visible" : "hidden"} />
+        <Navbar className={useHomeComponents() ? "visible" : "hidden"} />
         <div className="flex gap-4 items-center">
-          <Search show={useIndexCheck() ? true : false} />
+          <Search show={useHomeComponents() ? true : false} />
           <ModeToggle />
           {/* TODO: User avatar here */}
           {user ? (

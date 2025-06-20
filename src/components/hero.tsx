@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
-    <div className="flex flex-1 h-full flex-col py-4 lg:py-36 justify-center items-center gap-6">
+    <div className="flex flex-1 h-[calc(100vh-96px)] flex-col py-4 w-full justify-center items-center gap-6 ">
       <div className="text-6xl lg:text-8xl font-extrabold text-center overflow-hidden will-change-transform">
         <div className="overflow-hidden">
           <p className="hero-text">
