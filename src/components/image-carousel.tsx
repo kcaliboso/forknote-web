@@ -21,7 +21,7 @@ export default function ImageCarousel({ images }: CarouselProps) {
     >
       <CarouselContent>
         {images.map((image) => (
-          <CarouselItem className="basis-1/3" key={image}>
+          <CarouselItem className="" key={image}>
             <img
               src={createImageUrl(image, "recipes")}
               alt="ingredient-image"
