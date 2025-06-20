@@ -15,7 +15,6 @@ export default function RecipeDetailsPage() {
 
   async function fetchRecipe() {
     const response = await axios.get<ApiResponse<Recipe>>(`v1/recipes/${id}`);
-    console.log(response);
     return response.data;
   }
 
@@ -37,48 +36,46 @@ export default function RecipeDetailsPage() {
   }
 
   return (
-    <div className="flex flex-col flex-1 lg:p-6">
+    <div className="flex-1 flex flex-col">
+      <div className="py-4 self-start">
+        <div className="p-2 border rounded-full">
+          <BackIcon className="size-6 cursor-pointer" onClick={goBack} />
+        </div>
+      </div>
       <div className="flex-1 flex flex-col">
-        <div className="px-2 lg:px-6 py-4 self-start">
-          <div className="p-2 border rounded-full">
-            <BackIcon className="size-6 cursor-pointer" onClick={goBack} />
+        {isFetching ? (
+          <div className="w-full h-full flex justify-center items-center">
+            <Spinner className="size-24 text-primary" />
           </div>
-        </div>
-        <div className="flex-1 flex flex-col p-6">
-          {isFetching ? (
-            <div className="w-full h-full flex justify-center items-center">
-              <Spinner className="size-24 text-primary" />
+        ) : (
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <div className="flex flex-col gap-4">
+              <h1 className="text-2xl font-bold">{recipe?.name}</h1>
+              <img
+                src={createImageUrl(recipe?.cover ?? "", "recipes")}
+                alt={recipe?.name}
+                className="w-full lg:h-[25rem] object-cover rounded-4xl"
+              />
+              <p className="text-justify">{recipe?.description}</p>
             </div>
-          ) : (
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-              <div className="flex flex-col gap-4">
-                <h1 className="text-2xl font-bold">{recipe?.name}</h1>
-                <img
-                  src={createImageUrl(recipe?.cover ?? "", "recipes")}
-                  alt={recipe?.name}
-                  className="w-full lg:h-[25rem] object-cover rounded-4xl"
+            <div className="flex flex-col gap-4 justify-between">
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold">
+                  Instructions on how to cook:
+                </h2>
+                <ol
+                  className="list-decimal ml-6 text-justify"
+                  dangerouslySetInnerHTML={createMarkup(
+                    recipe?.instructions ?? ""
+                  )}
                 />
-                <p className="text-justify">{recipe?.description}</p>
               </div>
-              <div className="flex flex-col gap-4 justify-between">
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-bold">
-                    Instructions on how to cook:
-                  </h2>
-                  <ol
-                    className="list-decimal ml-6 text-justify"
-                    dangerouslySetInnerHTML={createMarkup(
-                      recipe?.instructions ?? ""
-                    )}
-                  />
-                </div>
-                <div className="w-full self-center ">
-                  <ImageCarousel images={recipe?.images ?? []} />
-                </div>
+              <div className="w-full self-center ">
+                <ImageCarousel images={recipe?.images ?? []} />
               </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       <ReactQueryDevtools initialIsOpen />
