@@ -14,6 +14,7 @@ interface CarouselProps {
 export default function ImageCarousel({ images }: CarouselProps) {
   return (
     <Carousel
+      className="w-full max-w-[260px] lg:max-w-sm xl:max-w-xl"
       opts={{
         align: "start",
         loop: true,

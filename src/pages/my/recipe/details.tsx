@@ -36,7 +36,7 @@ export default function RecipeDetailsPage() {
   }
 
   return (
-    <div className="flex-1 flex flex-col">
+    <div className="flex-1 flex flex-col gap-2">
       <div className="py-4 self-start">
         <div className="p-2 border rounded-full">
           <BackIcon className="size-6 cursor-pointer" onClick={goBack} />
@@ -58,7 +58,7 @@ export default function RecipeDetailsPage() {
               />
               <p className="text-justify">{recipe?.description}</p>
             </div>
-            <div className="flex flex-col gap-4 justify-between">
+            <div className="flex flex-col gap-4 ">
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold">
                   Instructions on how to cook:
@@ -70,8 +70,11 @@ export default function RecipeDetailsPage() {
                   )}
                 />
               </div>
-              <div className="w-full self-center ">
-                <ImageCarousel images={recipe?.images ?? []} />
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold">Recipe Images</h3>
+                <div className="self-center place-items-center w-full">
+                  <ImageCarousel images={recipe?.images ?? []} />
+                </div>
               </div>
             </div>
           </div>
